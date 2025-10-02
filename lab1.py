@@ -57,10 +57,10 @@ def main():
     plots(z, "ReLU", relu)
     plots(z, "Leaky ReLU", leaky_relu)
 
-    sft, derv_sft, mean_sft = softmax(z)
+    s, derv_s, mean_s = softmax(z)
     print("Mean of softmax: ",mean_sft)
     plt.figure(figsize=(8, 6))
-    plt.plot(z, sft, label="Softmax function")
+    plt.plot(z, s, label="Softmax function")
     plt.tight_layout()
     plt.legend()
     plt.grid()
