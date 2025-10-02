@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 
 def sigmoid(z):
     sig = 1 / (1 + np.exp(-z))
-    return np.array(sig), np.array(sig * (1 - sig),np.mean(sig)
+    return np.array(sig), np.array(sig * (1 - sig)),np.mean(sig)
 
 
 def tanh(z):
@@ -13,14 +13,14 @@ def tanh(z):
 
 def relu(z):
     Re = (z + np.abs(z)) / 2
-    der_ = 0.5 + 0.5 * np.sign(z)
-    return np.array(Re), np.array(der_Re),np.mean(Re)
+    der = 0.5 + 0.5 * np.sign(z)
+    return np.array(Re), np.array(der),np.mean(Re)
 
 
 def leaky_relu(z):
     leaky= np.maximum(0.01 * z, z)
     der_leaky= np.where(z > 0, 1, 0.01)
-    return np.array(leaky, np.array(der_leaky,np.mean(leaky)
+    return np.array(leaky), np.array(der_leaky),np.mean(leaky)
 
 
 def softmax(z):
@@ -58,16 +58,16 @@ def main():
     plots(z, "Leaky ReLU", leaky_relu)
 
     s, derv_s, mean_s = softmax(z)
-    print("Mean of softmax: ",mean_sft)
+    print("Mean of softmax: ",mean_s)
     plt.figure(figsize=(8, 6))
     plt.plot(z, s, label="Softmax function")
     plt.tight_layout()
     plt.legend()
     plt.grid()
     plt.show()
-    print("Softmax output:", sft)
+    print("Softmax output:", s)
     print("Softmax Jacobian:")
-    print(derv_sft)
+    print(derv_s)
 
 if __name__ == "__main__":
     main()
