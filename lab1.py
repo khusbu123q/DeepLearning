@@ -2,41 +2,41 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 def sigmoid(z):
-    sig_z = 1 / (1 + np.exp(-z))
-    return np.array(sig_z), np.array(sig_z * (1 - sig_z)),np.mean(sig_z)
+    sig = 1 / (1 + np.exp(-z))
+    return np.array(sig), np.array(sig * (1 - sig),np.mean(sig)
 
 
 def tanh(z):
-    tanh_z = (np.exp(z) - np.exp(-z)) / (np.exp(z) + np.exp(-z))
-    return np.array(tanh_z), np.array(1 - tanh_z ** 2),np.mean(tanh_z)
+    tanh = (np.exp(z) - np.exp(-z)) / (np.exp(z) + np.exp(-z))
+    return np.array(tanh), np.array(1 - tanh ** 2),np.mean(tanh)
 
 
 def relu(z):
-    ReLU = (z + np.abs(z)) / 2
-    der_ReLU = 0.5 + 0.5 * np.sign(z)
-    return np.array(ReLU), np.array(der_ReLU),np.mean(ReLU)
+    Re = (z + np.abs(z)) / 2
+    der_ = 0.5 + 0.5 * np.sign(z)
+    return np.array(Re), np.array(der_Re),np.mean(Re)
 
 
 def leaky_relu(z):
-    leaky_ReLU = np.maximum(0.01 * z, z)
-    der_leaky_ReLU = np.where(z > 0, 1, 0.01)
-    return np.array(leaky_ReLU), np.array(der_leaky_ReLU),np.mean(leaky_ReLU)
+    leaky= np.maximum(0.01 * z, z)
+    der_leaky= np.where(z > 0, 1, 0.01)
+    return np.array(leaky, np.array(der_leaky,np.mean(leaky)
 
 
 def softmax(z):
     denominator = sum(np.exp(val) for val in z)
     numerator = np.exp(z)
-    softmax = numerator / denominator
+    sx = numerator / denominator
     jacobian = []
     for i in range(len(z)):
         temp = []
         for j in range(len(z)):
             if i == j:
-                temp.append(softmax[i] * (1 - softmax[i]))
+                temp.append(sx[i] * (1 - sx[i]))
             else:
-                temp.append(-softmax[i] * softmax[j])
+                temp.append(-sx[i] * sx[j])
         jacobian.append(temp)
-    return np.array(softmax), np.array(jacobian),np.mean(softmax)
+    return np.array(sx), np.array(jacobian),np.mean(sx)
 
 def plots(z, func_name, func):
     y, dy, mean = func(z)
